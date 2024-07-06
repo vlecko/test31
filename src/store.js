@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
-import axiosInstance from "./axiosInstance";
+// import axiosInstance from "./axiosInstance";
+import axios from "axios";
 
 export default createStore({
     state: {
@@ -89,7 +90,7 @@ export default createStore({
         async fetchCars({ commit }) {
             commit("setLoading", true);
             try {
-                const response = await axiosInstance.get("/cars/list");
+                const response = await axios.get("http://am111.05.testing.place/api/v1/cars/list");
                 commit("setCars", response.data);
             } catch (error) {
                 console.error("Error when retrieving a list of machines:", error);
@@ -100,7 +101,7 @@ export default createStore({
         async fetchCar({ commit }, id) {
             commit("setLoading", true);
             try {
-                const response = await axiosInstance.get(`/car/${id}`);
+                const response = await axios.get(`http://am111.05.testing.place/api/v1/car/${id}`);
                 commit("setCar", response.data);
             } catch (error) {
                 console.error(
@@ -114,7 +115,7 @@ export default createStore({
         async fetchPosts({ commit }, id) {
             commit("setLoading", true);
             try {
-                const response = await axiosInstance.get(`car/${id}/posts`);
+                const response = await axios.get(`http://am111.05.testing.place/api/v1/car/${id}/posts`);
                 commit("setPosts", response.data);
             } catch (error) {
                 console.error("Error when retrieving a list of posts:", error);
@@ -125,7 +126,7 @@ export default createStore({
         async fetchPost({ commit }, id) {
             commit("setLoading", true);
             try {
-                const response = await axiosInstance.get(`/post/${id}`);
+                const response = await axios.get(`http://am111.05.testing.place/api/v1//post/${id}`);
                 commit("setPost", response.data);
             } catch (error) {
                 console.error("Error when receiving post:", error);
